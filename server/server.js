@@ -7,6 +7,9 @@ import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from './controllers/webhooks.js'
 import companyRoutes from './routes/companyRoutes.js'
 import connectCloudinary from './config/cloudinary.js'
+import jobRoutes from './routes/JobRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+import {clerkMiddleware} from '@clerk/express'
 // initalise exapress
 const app = express()
 
@@ -16,6 +19,7 @@ await connectCloudinary()
 
 // middle wares
 app.use(cors())
+app.use (clerkMiddleware())
 
 
 app.use(express.json())
@@ -30,6 +34,8 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 app.post('/webhooks',clerkWebhooks)
 
 app.use ('/api/company', companyRoutes)
+app.use ('/api/jobs',jobRoutes)
+app.use ('/api/users', userRoutes)
 
 
 // port 
