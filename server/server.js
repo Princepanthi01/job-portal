@@ -39,9 +39,10 @@ app.use ('/api/users', userRoutes)
 
 
 // port 
-
+const PORT = process.env.PORT || 5000
 
 Sentry.setupExpressErrorHandler(app);
 
-export default app
 
+
+export default app
