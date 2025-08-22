@@ -32,6 +32,9 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 });
 
 app.post('/webhooks',clerkWebhooks)
+// server.js
+// app.post('/webhooks', express.raw({ type: "application/json" }), clerkWebhooks)
+
 
 app.use ('/api/company', companyRoutes)
 app.use ('/api/jobs',jobRoutes)
